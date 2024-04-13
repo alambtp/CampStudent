@@ -1,0 +1,6 @@
+ID,nameFirst,nameMiddle,nameLast,roll,sex,language_code,phoneNumber,email,class,CURRENCY_code,FEE,FinalMarks,inWord,grade
+aaf3c3f5-c718-4c03-83ec-8f79e7671001,Mr,Raju,Kumar,1001,M,Hin,9632587410,Raju.Kumar@gmail.com,1,INR,25000,450,Four hundred fifty,A
+aaf3c3f5-c718-4c03-83ec-8f79e7671002,Mr,Aslam,Ali,1002,M,Hin,9632587411,Aslam.Ali@gmail.com,1,INR,18000,250,Two hundred fifty,B
+aaf3c3f5-c718-4c03-83ec-8f79e7671003,Miss,Kajal,Kumari,1003,F,Hin,9632587412,Kajal.Kumari@gmail.com,1,INR,18000,350,Three hundred fifty,A
+aaf3c3f5-c718-4c03-83ec-8f79e7671004,Mr,Sonal ,Kumar,1004,M,Hin,9632587413,Sonal.Kumar@gmail.com,1,INR,18000,212,Two hundred twelve,C
+aaf3c3f5-c718-4c03-83ec-8f79e7671005,Miss,Doli,Kumari,1005,F,Hin,9632587414,Doli.Kumari@gmail.com,1,INR,18000,366,Three hundred sixty-six,A
