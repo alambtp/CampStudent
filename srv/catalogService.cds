@@ -9,6 +9,9 @@ service CatalogService@(path: '/CatalogService') {
         title: '{i18n>studentDetails}') as projection on transaction.students{
             *,
             Marks: redirected to MarksDetails
+        }actions{
+            function getTopper() returns array of StudentDetails;
+            action upGrade();
         }
         // http://localhost:4004/CatalogService/POs
         // http://localhost:4004/CatalogService/POs('5P29FC40CA471067B31D00DD0106DA01')?$expand=Items
