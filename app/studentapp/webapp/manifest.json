@@ -1,0 +1,159 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "student.app.studentapp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.13.2",
+      "toolsId": "4a33abd2-cc43-45f6-9dce-77ca97e18ab2"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/CatalogService/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.123.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "student.app.studentapp.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "StudentDetailsList",
+          "target": "StudentDetailsList"
+        },
+        {
+          "pattern": "StudentDetails({key}):?query:",
+          "name": "StudentDetailsObjectPage",
+          "target": "StudentDetailsObjectPage"
+        },
+        {
+          "pattern": "StudentDetails({key})/Marks({key2}):?query:",
+          "name": "MarksDetailsObjectPage",
+          "target": "MarksDetailsObjectPage"
+        }
+      ],
+      "targets": {
+        "StudentDetailsList": {
+          "type": "Component",
+          "id": "StudentDetailsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/StudentDetails",
+              "variantManagement": "Page",
+              "navigation": {
+                "StudentDetails": {
+                  "detail": {
+                    "route": "StudentDetailsObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "StudentDetailsObjectPage": {
+          "type": "Component",
+          "id": "StudentDetailsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/StudentDetails",
+              "navigation": {
+                "Marks": {
+                  "detail": {
+                    "route": "MarksDetailsObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "MarksDetailsObjectPage": {
+          "type": "Component",
+          "id": "MarksDetailsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/StudentDetails/Marks"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

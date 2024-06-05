@@ -12,9 +12,14 @@
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.120.8",
     "sqlite3": "^5.1.7"
   },
   "scripts": {
-    "start": "cds-serve"
-  }
+    "start": "cds-serve",
+    "watch-studentapp": "cds watch --open studentapp/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/studentapp"
+  ]
 }
