@@ -1,12 +1,15 @@
-using { student.db.transaction  } from '../db/datamodel';
+using { student.db.transaction, student.db.master  } from '../db/datamodel';
 
 service CatalogService@(path: '/CatalogService') {
 
     //entity StudentSet as projection on transaction.students;
     entity MarksSet as projection on transaction.marks;
+    entity SubjectSet as projection on master.subject;
 
     entity StudentDetails @( 
-        title: '{i18n>studentDetails}') as projection on transaction.students{
+        title: '{i18n>studentDetails}',
+        odata.draft.enabled: true
+        ) as projection on transaction.students{
             *,
             Marks: redirected to MarksDetails
         }actions{

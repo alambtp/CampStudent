@@ -3,6 +3,13 @@ using { student.common } from './common';
 
 using {cuid, Language} from '@sap/cds/common';
 
+context master {
+        entity subject {
+        key id : String(2);
+        subCode: String(10);
+        subName: String(100);
+    }
+}
 
 context transaction {
     entity students : cuid, common.Amount {
@@ -30,4 +37,5 @@ context transaction {
         totalMarks    : Decimal(15, 2);
         obtainedMarks : Decimal(15, 2);
     }
+
 }
