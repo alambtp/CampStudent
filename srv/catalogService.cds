@@ -5,12 +5,15 @@ service CatalogService@(path: '/CatalogService') {
     //entity StudentSet as projection on transaction.students;
     entity MarksSet as projection on transaction.marks;
     entity SubjectSet as projection on master.subject;
+    entity Class as projection on master.class;
 
     entity StudentDetails @( 
         title: '{i18n>studentDetails}',
         odata.draft.enabled: true
         ) as projection on transaction.students{
             *,
+            @mandatory nameMiddle,
+            @readonly FinalMarks,
             Marks: redirected to MarksDetails
         }actions{
             function getTopper() returns array of StudentDetails;
@@ -23,6 +26,7 @@ service CatalogService@(path: '/CatalogService') {
         entity MarksDetails @( title: '{i18n>marksDetails}' )
          as projection on transaction.marks{
             *,
+            @readonly roll,
             PARENT_KEY: redirected to StudentDetails
          }
         // http://localhost:4004/CatalogService/POItems('4P29FC40CA471067B31D00DD01LD1010')

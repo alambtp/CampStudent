@@ -11,7 +11,7 @@ annotate service.StudentDetails with @(UI: {
         {
             $Type: 'UI.DataField',
             Label: '{i18n>roll}',
-            Value: roll,
+            Value: roll,            
         },
         {
             $Type: 'UI.DataField',
@@ -109,6 +109,11 @@ annotate service.StudentDetails with @(UI: {
                 Value: class,
             },
             {
+                $Type : 'UI.DataField',
+                Label: '{i18n>gender}',
+                Value : sex,
+            },
+            {
                 $Type: 'UI.DataField',
                 Label: '{i18n>fMarks}',
                 Value: FinalMarks,
@@ -185,13 +190,16 @@ annotate service.StudentDetails with {
 annotate service.StudentDetails with {
     class @Common.ValueList: {
         $Type         : 'Common.ValueListType',
-        CollectionPath: 'StudentDetails',
+        CollectionPath: 'Class',
         Parameters    : [
             {
                 $Type            : 'Common.ValueListParameterInOut',
                 LocalDataProperty: class,
-                ValueListProperty: 'class',
-            }
+                ValueListProperty: 'clCode',
+            },{
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'clName',
+            },
         ],
     }
 };
