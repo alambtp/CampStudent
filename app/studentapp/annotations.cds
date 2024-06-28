@@ -1,5 +1,48 @@
 using CatalogService as service from '../../srv/catalogService';
 
+annotate service.StudentDetails with {
+    class @mandatory;
+    roll @readonly;
+    FinalMarks @readonly;
+    //class @UI : { Hidden : true}
+};
+// annotate service.StudentDetails with {
+//     inWord @UI : { MultiLineText : true}
+// };
+annotate service.StudentDetails : FinalMarks with @(
+    title : 'Finl Marks',
+    //Common : { Text : inWord, TextArrangement : #TextOnly}
+    Common : { Text : inWord}
+);
+
+annotate service.StudentDetails : class with @(
+    title : 'Class',
+    //Common : { Text : cls.clName, TextArrangement : #TextOnly}
+    Common : { Text : cls.clName,
+        ValueList: {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'Class',
+            Parameters    : [
+                {
+                    $Type            : 'Common.ValueListParameterInOut',
+                    LocalDataProperty: class,
+                    ValueListProperty: 'clCode',
+                },{
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'clName',
+                },
+            ],
+        }
+    }
+);
+
+ annotate service.StudentDetails : CURRENCY with @(
+    title : 'Currency',
+    //Common : { Text : inWord, TextArrangement : #TextOnly}
+    Common : { Text : CURRENCY}
+);
+
+
 annotate service.StudentDetails with @(UI: {
     SelectionFields              : [
         roll,
@@ -11,7 +54,8 @@ annotate service.StudentDetails with @(UI: {
         {
             $Type: 'UI.DataField',
             Label: '{i18n>roll}',
-            Value: roll,            
+            Value: roll,    
+            // ![@UI.Hidden]       
         },
         {
             $Type: 'UI.DataField',
@@ -117,7 +161,22 @@ annotate service.StudentDetails with @(UI: {
                 $Type: 'UI.DataField',
                 Label: '{i18n>fMarks}',
                 Value: FinalMarks,
-            }
+            },
+            // {
+            //     $Type : 'UI.DataField',
+            //     Label: '{i18n>inWord}',
+            //     Value : inWord,
+            // },
+             {
+                 $Type : 'UI.DataField',
+                 Label: 'Fee',
+                 Value : FEE,
+             },
+             {
+                 $Type : 'UI.DataField',
+                 Label: 'Currency',
+                 Value : CURRENCY_code
+             },
         ]
     },
 });
@@ -186,23 +245,23 @@ annotate service.StudentDetails with {
     }
 };
 
-// Class F4 Help
-annotate service.StudentDetails with {
-    class @Common.ValueList: {
-        $Type         : 'Common.ValueListType',
-        CollectionPath: 'Class',
-        Parameters    : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: class,
-                ValueListProperty: 'clCode',
-            },{
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'clName',
-            },
-        ],
-    }
-};
+// // Class F4 Help
+// annotate service.StudentDetails with {
+//     class @Common.ValueList: {
+//         $Type         : 'Common.ValueListType',
+//         CollectionPath: 'Class',
+//         Parameters    : [
+//             {
+//                 $Type            : 'Common.ValueListParameterInOut',
+//                 LocalDataProperty: class,
+//                 ValueListProperty: 'clCode',
+//             },{
+//                 $Type : 'Common.ValueListParameterDisplayOnly',
+//                 ValueListProperty : 'clName',
+//             },
+//         ],
+//     }
+// };
 // Grade F4 Help
 annotate service.StudentDetails with {
     grade @Common.ValueList: {
@@ -231,7 +290,7 @@ annotate service.MarksDetails with {
         ],
     }
 };
-// Marks Roll F4 Help
+// Marks Subject F4 Help
 annotate service.MarksDetails with {
     subject @Common.ValueList: {
         $Type         : 'Common.ValueListType',

@@ -33,7 +33,9 @@ context transaction {
         FinalMarks  : Decimal(5, 2);
         inWord      : localized String(255);
         grade       : String(1);
-        Marks: Composition of many marks on Marks.PARENT_KEY = $self
+        Marks: Composition of many marks on Marks.PARENT_KEY = $self;
+        cls: Association to one master.class on cls.id = class;
+        //cls.clName;
     }
 
     entity marks : cuid {
